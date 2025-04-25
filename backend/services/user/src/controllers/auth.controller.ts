@@ -6,8 +6,6 @@ import {UserRepository} from '../repositories/user.repository';
 import {sign} from 'jsonwebtoken';
 import {HttpErrors} from '@loopback/rest';
 import {compare, hash} from 'bcrypt';
-import {SecurityBindings, UserProfile} from '@loopback/security';
-import {inject} from '@loopback/core';
 
 export class AuthController {
   constructor(
@@ -83,20 +81,28 @@ export class AuthController {
   }
 
   // 🧑 Signup Route for Users
-  @post('/signup/user')
-  async signupUser(
+  @post('/signup')
+  async signup(
     @requestBody({
       content: {
         'application/json': {
           schema: {
             type: 'object',
-            required: ['id', 'email', 'password', 'firstName', 'lastName'], // Added 'id' to required fields
+            required: [
+              'id',
+              'email',
+              'password',
+              'firstName',
+              'lastName',
+              'role',
+            ], // Added 'id' to required fields
             properties: {
               id: {type: 'string'}, // ID is now required for user signup
               email: {type: 'string'},
               password: {type: 'string'},
               firstName: {type: 'string'},
               lastName: {type: 'string'},
+              role: {type: 'string'},
             },
           },
         },
@@ -108,6 +114,7 @@ export class AuthController {
       password: string;
       firstName: string;
       lastName: string;
+      role: string;
     },
   ): Promise<{token: string}> {
     // Check if email already exists
@@ -132,7 +139,7 @@ export class AuthController {
       password: hashedPassword,
       firstName: credentials.firstName,
       lastName: credentials.lastName,
-      role: 'user', // Default role
+      role: credentials.role,
     });
 
     // Generate a JWT token for the new user
@@ -143,81 +150,6 @@ export class AuthController {
         lastName: user.lastName,
         email: user.email,
         role: user.role,
-      },
-      process.env.JWT_SECRET as string,
-      {
-        expiresIn: '1d',
-        issuer: process.env.JWT_ISSUER,
-      },
-    );
-
-    return {token};
-  }
-
-  // 🛡️ Signup Route for Admins (only accessible by an admin)
-  @post('/signup/admin')
-  async signupAdmin(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            required: ['id', 'email', 'password', 'firstName', 'lastName'],
-            properties: {
-              id: {type: 'string'},
-              email: {type: 'string'},
-              password: {type: 'string'},
-              firstName: {type: 'string'},
-              lastName: {type: 'string'},
-            },
-          },
-        },
-      },
-    })
-    credentials: {
-      id: string;
-      email: string;
-      password: string;
-      firstName: string;
-      lastName: string;
-    },
-    @inject(SecurityBindings.USER)
-    currentUser: UserProfile, // Authenticated user is injected here
-  ): Promise<{token: string}> {
-    // Only allow admin users to access this route
-    if (currentUser.role !== 'admin') {
-      throw new HttpErrors.Forbidden('Only admins can create other admins.');
-    }
-
-    // Check if the email already exists
-    const existing = await this.userRepository.findOne({
-      where: {email: credentials.email.toLowerCase()},
-    });
-    if (existing) {
-      throw new HttpErrors.BadRequest('Email already exists.');
-    }
-
-    // Hash password
-    const hashedPassword = await hash(credentials.password, 10);
-
-    // Create new admin user
-    const admin = await this.userRepository.create({
-      id: credentials.id,
-      email: credentials.email.toLowerCase(),
-      password: hashedPassword,
-      firstName: credentials.firstName,
-      lastName: credentials.lastName,
-      role: 'admin',
-    });
-
-    // Sign JWT token for the new admin
-    const token = sign(
-      {
-        id: admin.id,
-        email: admin.email,
-        firstName: admin.firstName,
-        lastName: admin.lastName,
-        role: admin.role,
       },
       process.env.JWT_SECRET as string,
       {
