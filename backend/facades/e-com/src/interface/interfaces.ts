@@ -25,3 +25,8 @@ export interface User {
   role: string;
   permissions?: string[];
 }
+
+export interface Category {
+  id: string;
+  name: string;
+}
