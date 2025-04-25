@@ -25,6 +25,7 @@ module.exports = {
   ],
 
   scopes: [
+{name: 'e-com-facade'}, 
 {name: 'notification-service'}, 
 {name: 'chat-service'}, 
     {name: 'ci-cd'},
