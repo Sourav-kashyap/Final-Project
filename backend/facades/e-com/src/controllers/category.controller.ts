@@ -14,7 +14,6 @@ export class CategoryController {
     @requestBody() category: Category,
   ): Promise<Category | string> {
     try {
-      console.log('Category data ->', category);
       const response = await axios.post(
         `${this.categoryBaseURL}/categories`,
         category,

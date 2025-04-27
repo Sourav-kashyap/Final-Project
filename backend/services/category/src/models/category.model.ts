@@ -16,7 +16,6 @@ export class Category extends Entity {
   })
   name: string;
 
-
   constructor(data?: Partial<Category>) {
     super(data);
   }
