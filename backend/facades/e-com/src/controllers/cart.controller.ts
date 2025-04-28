@@ -5,7 +5,7 @@ import {Filter, FilterExcludingWhere, Where, Count} from '@loopback/repository';
 import {handleError} from '../utils/errorHandle';
 
 export class CartController {
-  private cartBaseURL = 'http://localhost:3002';
+  private cartBaseURL = 'http://localhost:3006';
 
   constructor() {}
 

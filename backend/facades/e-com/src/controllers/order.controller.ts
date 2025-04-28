@@ -5,7 +5,7 @@ import {Filter, FilterExcludingWhere, Where, Count} from '@loopback/repository';
 import {handleError} from '../utils/errorHandle';
 
 export class OrderController {
-  private orderBaseURL = 'http://localhost:3003';
+  private orderBaseURL = 'http://localhost:3004';
 
   constructor() {}
 
