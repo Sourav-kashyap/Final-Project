@@ -39,3 +39,10 @@ export interface Product {
   categotyId: string;
   category: Category;
 }
+
+export interface Order {
+  id: string;
+  date: string;
+  items: string[];
+  status: number;
+}
