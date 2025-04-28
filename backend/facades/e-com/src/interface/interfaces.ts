@@ -52,3 +52,9 @@ export interface Wishlist {
   userId: string;
   productsId: string[];
 }
+
+export interface Cart {
+  id: string;
+  userId: string;
+  productsId: string[];
+}
