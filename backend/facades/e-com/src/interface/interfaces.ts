@@ -46,3 +46,9 @@ export interface Order {
   items: string[];
   status: number;
 }
+
+export interface Wishlist {
+  id: string;
+  userId: string;
+  productsId: string[];
+}
