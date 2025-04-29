@@ -6,3 +6,4 @@ export * from './product.controller';
 export * from './order.controller';
 export * from './wishlist.controller';
 export * from './cart.controller';
+export * from './brand.controller';

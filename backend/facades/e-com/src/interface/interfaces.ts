@@ -58,3 +58,8 @@ export interface Cart {
   userId: string;
   productsId: string[];
 }
+
+export interface Brand {
+  id: string;
+  name: string;
+}
