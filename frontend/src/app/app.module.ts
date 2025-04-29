@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { BrandsComponent } from './components/manage/brands/brands.component';
+import { BrandFormComponent } from './components/manage/brand-form/brand-form.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FormsModule } from '@angular/forms';
     CategoriesComponent,
     CategoryFormComponent,
     HomeComponent,
+    BrandsComponent,
+    BrandFormComponent,
   ],
   imports: [
     BrowserModule,

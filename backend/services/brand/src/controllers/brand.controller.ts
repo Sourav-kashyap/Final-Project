@@ -12,10 +12,10 @@ import {
   get,
   getModelSchemaRef,
   patch,
-  put,
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
 import {Brand} from '../models';
 import {BrandRepository} from '../repositories';
@@ -37,14 +37,17 @@ export class BrandController {
         'application/json': {
           schema: getModelSchemaRef(Brand, {
             title: 'NewBrand',
-            exclude: ['id'],
           }),
         },
       },
     })
-    brand: Omit<Brand, 'id'>,
+    brand: Brand,
   ): Promise<Brand> {
-    return this.brandRepository.create(brand);
+    try {
+      return await this.brandRepository.create(brand);
+    } catch (error) {
+      throw new HttpErrors.BadRequest(`Error creating brand: ${error.message}`);
+    }
   }
 
   @get('/brands/count')
@@ -53,7 +56,13 @@ export class BrandController {
     content: {'application/json': {schema: CountSchema}},
   })
   async count(@param.where(Brand) where?: Where<Brand>): Promise<Count> {
-    return this.brandRepository.count(where);
+    try {
+      return await this.brandRepository.count(where);
+    } catch (error) {
+      throw new HttpErrors.InternalServerError(
+        `Error counting brands: ${error.message}`,
+      );
+    }
   }
 
   @get('/brands')
@@ -69,7 +78,13 @@ export class BrandController {
     },
   })
   async find(@param.filter(Brand) filter?: Filter<Brand>): Promise<Brand[]> {
-    return this.brandRepository.find(filter);
+    try {
+      return await this.brandRepository.find(filter);
+    } catch (error) {
+      throw new HttpErrors.InternalServerError(
+        `Error retrieving brands: ${error.message}`,
+      );
+    }
   }
 
   @get('/brands/{id}')
@@ -86,7 +101,20 @@ export class BrandController {
     @param.filter(Brand, {exclude: 'where'})
     filter?: FilterExcludingWhere<Brand>,
   ): Promise<Brand> {
-    return this.brandRepository.findById(id, filter);
+    try {
+      const brand = await this.brandRepository.findById(id, filter);
+      if (!brand) {
+        throw new HttpErrors.NotFound(`Brand with id ${id} not found`);
+      }
+      return brand;
+    } catch (error) {
+      if (error instanceof HttpErrors.NotFound) {
+        throw error; // Already handled error
+      }
+      throw new HttpErrors.InternalServerError(
+        `Error finding brand by id: ${error.message}`,
+      );
+    }
   }
 
   @patch('/brands/{id}')
@@ -104,7 +132,13 @@ export class BrandController {
     })
     brand: Brand,
   ): Promise<void> {
-    await this.brandRepository.updateById(id, brand);
+    try {
+      await this.brandRepository.updateById(id, brand);
+    } catch (error) {
+      throw new HttpErrors.InternalServerError(
+        `Error updating brand: ${error.message}`,
+      );
+    }
   }
 
   @del('/brands/{id}')
@@ -112,6 +146,12 @@ export class BrandController {
     description: 'Brand DELETE success',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
-    await this.brandRepository.deleteById(id);
+    try {
+      await this.brandRepository.deleteById(id);
+    } catch (error) {
+      throw new HttpErrors.InternalServerError(
+        `Error deleting brand: ${error.message}`,
+      );
+    }
   }
 }

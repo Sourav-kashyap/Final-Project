@@ -1,0 +1,82 @@
+<!-- Outer container to center the form -->
+<div class="flex justify-center mt-10">
+  <!-- Form wrapper with gray shadow and styled background -->
+  <div
+    class="w-full max-w-xl bg-white shadow-md shadow-gray-400 rounded-lg p-8"
+  >
+    <form>
+      <!-- Show "Add New Category" if not in edit mode -->
+      <h1
+        *ngIf="!isEditMode; else updateHeading"
+        class="text-3xl font-bold text-center mb-6 border-b pb-2 text-gray-700"
+      >
+        Add New Brand
+      </h1>
+
+      <!-- Template to show when in edit mode -->
+      <ng-template #updateHeading>
+        <h1
+          class="text-3xl font-bold text-center mb-6 border-b pb-2 text-gray-700"
+        >
+          Update Brand
+        </h1>
+      </ng-template>
+
+      <!-- Fields in a row -->
+      <div class="flex gap-4">
+        <!-- ID Field -->
+        <div class="w-1/2">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Id</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Brand Id"
+              [(ngModel)]="brandId"
+              name="brandId"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- Name Field -->
+        <div class="w-1/2">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Brand Name"
+              [(ngModel)]="brandName"
+              name="brandName"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-center mt-6">
+        <!-- Show "Add" button if not in edit mode -->
+        <!-- Show "Add" button if not in edit mode -->
+        <button
+          *ngIf="!isEditMode; else updateButton"
+          type="button"
+          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-20 py-2.5 text-center me-2 mb-2"
+          (click)="add()"
+        >
+          Add
+        </button>
+
+        <!-- Corrected update button template -->
+        <ng-template #updateButton>
+          <button
+            type="button"
+            class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-20 py-2.5 text-center me-2 mb-2"
+            (click)="update()"
+          >
+            Update
+          </button>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+</div>
