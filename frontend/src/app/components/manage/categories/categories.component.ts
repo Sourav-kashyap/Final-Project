@@ -17,20 +17,32 @@ export class CategoriesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private readonly categoryService: CategoryService) {}
+  constructor(private readonly category: CategoryService) {}
 
   ngOnInit(): void {
     this.loadCategories();
   }
 
   loadCategories(): void {
-    this.categoryService.getCategories().subscribe({
+    this.category.getCategories().subscribe({
       next: (categories: Category[]) => {
         console.log('Categories loaded:', categories);
         this.dataSource.data = categories;
       },
       error: (err) => {
         console.error('Error loading categories:', err);
+      },
+    });
+  }
+
+  deleteCategory(id: string): void {
+    this.category.deleteCategoryById(id).subscribe({
+      next: () => {
+        console.log('Category deleted successfully!');
+        this.loadCategories();
+      },
+      error: (error) => {
+        console.error('Error deleting category:', error);
       },
     });
   }

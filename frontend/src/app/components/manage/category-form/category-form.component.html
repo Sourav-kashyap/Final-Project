@@ -5,12 +5,22 @@
     class="w-full max-w-xl bg-white shadow-md shadow-gray-400 rounded-lg p-8"
   >
     <form>
-      <!-- Styled Heading -->
+      <!-- Show "Add New Category" if not in edit mode -->
       <h1
+        *ngIf="!isEditMode; else updateHeading"
         class="text-3xl font-bold text-center mb-6 border-b pb-2 text-gray-700"
       >
         Add New Category
       </h1>
+
+      <!-- Template to show when in edit mode -->
+      <ng-template #updateHeading>
+        <h1
+          class="text-3xl font-bold text-center mb-6 border-b pb-2 text-gray-700"
+        >
+          Update Category
+        </h1>
+      </ng-template>
 
       <!-- Fields in a row -->
       <div class="flex gap-4">
@@ -45,14 +55,27 @@
 
       <!-- Submit Button -->
       <div class="flex justify-center mt-6">
+        <!-- Show "Add" button if not in edit mode -->
+        <!-- Show "Add" button if not in edit mode -->
         <button
+          *ngIf="!isEditMode; else updateButton"
           type="button"
-          class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          routerLink="/admin/categories/add"
+          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-20 py-2.5 text-center me-2 mb-2"
           (click)="add()"
         >
           Add
         </button>
+
+        <!-- Corrected update button template -->
+        <ng-template #updateButton>
+          <button
+            type="button"
+            class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-20 py-2.5 text-center me-2 mb-2"
+            (click)="update()"
+          >
+            Update
+          </button>
+        </ng-template>
       </div>
     </form>
   </div>

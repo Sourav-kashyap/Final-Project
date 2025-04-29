@@ -20,4 +20,19 @@ export class CategoryService {
       categoryData
     );
   }
+
+  updateCategoryById(id: string, category: Category): Observable<void> {
+    return this.http.patch<void>(
+      `${this.categoryBaseUrl}/categories/${id}`,
+      category
+    );
+  }
+
+  getCategoryById(id: string): Observable<Category> {
+    return this.http.get<Category>(`${this.categoryBaseUrl}/categories/${id}`);
+  }
+
+  deleteCategoryById(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.categoryBaseUrl}/categories/${id}`);
+  }
 }
