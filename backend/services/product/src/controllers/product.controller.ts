@@ -12,7 +12,6 @@ import {
   get,
   getModelSchemaRef,
   patch,
-  put,
   del,
   requestBody,
   response,
@@ -37,12 +36,11 @@ export class ProductController {
         'application/json': {
           schema: getModelSchemaRef(Product, {
             title: 'NewProduct',
-            exclude: ['id'],
           }),
         },
       },
     })
-    product: Omit<Product, 'id'>,
+    product: Product,
   ): Promise<Product> {
     return this.productRepository.create(product);
   }

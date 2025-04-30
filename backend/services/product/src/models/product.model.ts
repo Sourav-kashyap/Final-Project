@@ -14,7 +14,13 @@ export class Product extends Entity {
     type: 'string',
     required: true,
   })
-  description: string;
+  name: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  description?: string;
 
   @property({
     type: 'number',
@@ -23,17 +29,23 @@ export class Product extends Entity {
   price: number;
 
   @property({
+    type: 'number',
+    required: true,
+  })
+  discount?: number;
+
+  @property({
     type: 'array',
     itemType: 'string',
     required: true,
   })
-  image: string[];
+  image?: string[];
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  categotyId: string;
+  categoryId: string;
 
   constructor(data?: Partial<Product>) {
     super(data);

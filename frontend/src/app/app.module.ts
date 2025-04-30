@@ -19,6 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { BrandsComponent } from './components/manage/brands/brands.component';
 import { BrandFormComponent } from './components/manage/brand-form/brand-form.component';
+import { ProductsComponent } from './components/manage/products/products.component';
+import { ProductFormComponent } from './components/manage/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { BrandFormComponent } from './components/manage/brand-form/brand-form.co
     HomeComponent,
     BrandsComponent,
     BrandFormComponent,
+    ProductsComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,155 @@
+<div class="px-20 mt-20">
+  <div class="flex justify-between">
+    <p class="text-4xl mb-6">Manage Products</p>
+    <button
+      type="button"
+      class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+      routerLink="/admin/products/add"
+    >
+      Add new Product
+    </button>
+  </div>
+
+  <div class="shadow">
+    <!-- Filter Input -->
+    <mat-form-field appearance="standard" class="w-full">
+      <mat-label class="ml-2">Filter</mat-label>
+      <input
+        class="m-2"
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Search"
+        #input
+      />
+    </mat-form-field>
+
+    <!-- Table -->
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="w-full table-fixed"
+    >
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          ID
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.id }}
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Name
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.name }}
+        </td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Description
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.description }}
+        </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Price
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.price }}
+        </td>
+      </ng-container>
+
+      <!-- Discount Column -->
+      <ng-container matColumnDef="discount">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Discount (%)
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.discount }}
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Action
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          <button
+            type="button"
+            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-1.5 text-center me-2 mb-2"
+            [routerLink]="['/admin/products', row.id]"
+          >
+            Edit
+          </button>
+
+          <button
+            type="button"
+            class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-2 mb-2"
+            (click)="deleteProduct(row.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Header & Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- No Data Row -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell text-center" colspan="3">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+
+    <!-- Paginator -->
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20, 100]"
+      aria-label="Select page size"
+    ></mat-paginator>
+  </div>
+</div>
