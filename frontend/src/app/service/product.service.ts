@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../interface/interface';
 
@@ -21,7 +21,12 @@ export class ProductService {
   updateProductById(id: string, product: Product): Observable<void> {
     return this.http.patch<void>(
       `${this.productBaseUrl}/products/${id}`,
-      product
+      product,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      }
     );
   }
 

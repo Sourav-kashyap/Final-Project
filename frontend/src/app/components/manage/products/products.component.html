@@ -100,8 +100,21 @@
         >
           Discount (%)
         </th>
+
         <td mat-cell *matCellDef="let row" class="w-1/3">
-          {{ row.discount }}
+          <div class="mt-2 text-blue-500">
+            <span
+              >{{ row.discount }}% Discount: ₹{{
+                (row.price * row.discount) / 100
+              }}</span
+            >
+          </div>
+          <!-- Original Price with Strikethrough -->
+          <span class="line-through text-red-500"> ₹{{ row.price }} </span>
+          <!-- Discounted Price in Green -->
+          <span class="text-green-500">
+            ₹{{ row.price - (row.price * row.discount) / 100 }}
+          </span>
         </td>
       </ng-container>
 
