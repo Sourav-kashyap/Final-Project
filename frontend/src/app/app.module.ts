@@ -16,11 +16,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrandsComponent } from './components/manage/brands/brands.component';
 import { BrandFormComponent } from './components/manage/brand-form/brand-form.component';
 import { ProductsComponent } from './components/manage/products/products.component';
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,8 @@ import { ProductFormComponent } from './components/manage/product-form/product-f
     HttpClientModule,
     MatButtonModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

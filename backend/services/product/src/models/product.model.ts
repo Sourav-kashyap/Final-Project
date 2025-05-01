@@ -39,13 +39,19 @@ export class Product extends Entity {
     itemType: 'string',
     required: true,
   })
-  image?: string[];
+  images?: string[];
 
   @property({
     type: 'string',
     required: true,
   })
   categoryId: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  brandId: string;
 
   constructor(data?: Partial<Product>) {
     super(data);

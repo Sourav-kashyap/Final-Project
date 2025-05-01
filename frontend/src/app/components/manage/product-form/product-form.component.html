@@ -1,1 +1,97 @@
-<p>product-form works!</p>
+<div class="flex flex-col items-center px-40 mt-10 p-10">
+  <h1>Add New Product</h1>
+  <form [formGroup]="productForm" class="shadow p-4">
+    <div class="flex flex-wrap">
+      <mat-form-field class="w-full">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryId" placeholder="Select category">
+          <mat-option
+            *ngFor="let category of categoryData"
+            [value]="category.id"
+          >
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>BranId</mat-label>
+        <mat-select formControlName="brandId" placeholder="Select brand">
+          <mat-option *ngFor="let brand of brandData" [value]="brand.id">
+            {{ brand.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="id" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" rows="5"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" type="number" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Discount</mat-label>
+        <input matInput formControlName="discount" type="number" />
+      </mat-form-field>
+
+      <div formArrayName="images" class="w-full flex flex-col">
+        <button
+          type="button"
+          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-1.5 text-center me-2 mb-2"
+          (click)="addImage()"
+        >
+          Add Image
+        </button>
+        <h2>Images</h2>
+        <div
+          *ngFor="let image of images.controls; let i = index"
+          [formGroupName]="i"
+          class="w-full"
+        >
+          <mat-form-field class="w-full">
+            <mat-label>Image {{ i + 1 }}</mat-label>
+            <input matInput formControlName="imageUrl" />
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-20 py-2.5 text-center me-2 mb-2 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl"
+            (click)="removeImage(i)"
+            *ngIf="images.length > 1"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <button
+        type="button"
+        class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-20 py-2.5 text-center me-2 mb-2 transition-all duration-300 ease-in-out transform"
+        [ngClass]="{
+          'hover:bg-gradient-to-br hover:scale-105 hover:shadow-2xl':
+            productForm.valid,
+          'cursor-not-allowed opacity-50': !productForm.valid
+        }"
+        (click)="addProduct()"
+        [disabled]="!productForm.valid"
+      >
+        Add Product
+      </button>
+    </div>
+  </form>
+</div>

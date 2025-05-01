@@ -1,0 +1,9 @@
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+button:disabled:hover {
+  transform: none; /* Prevent hover effects when the button is disabled */
+  box-shadow: none; /* Disable the shadow effect */
+}

@@ -14,6 +14,7 @@ export interface Product {
   description?: string;
   price: number;
   discount?: number;
-  image?: string[];
+  images?: string[];
   categoryId: string;
+  brandId: string;
 }
