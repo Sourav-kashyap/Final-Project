@@ -22,6 +22,9 @@ import { BrandFormComponent } from './components/manage/brand-form/brand-form.co
 import { ProductsComponent } from './components/manage/products/products.component';
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
 import { MatSelectModule } from '@angular/material/select';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { DashboardComponent } from './components/manage/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { MatSelectModule } from '@angular/material/select';
     BrandFormComponent,
     ProductsComponent,
     ProductFormComponent,
+    HeaderComponent,
+    FooterComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

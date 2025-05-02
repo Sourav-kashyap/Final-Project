@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopEase Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-800 text-white">
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-gray-900 flex flex-col px-4 py-6 space-y-6">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <img
+            class="h-12 w-12 rounded-full object-cover"
+            src="https://static.vecteezy.com/system/resources/previews/016/471/452/non_2x/abstract-modern-ecommerce-logo-ecommerce-logo-design-shop-logo-design-template-creative-ecommerce-logo-vector.jpg"
+            alt="Your Company"
+          />
+          <span class="text-lg font-semibold">ShopEase</span>
+        </div>
+
+        <!-- Search bar -->
+        <div>
+          <input
+            type="text"
+            placeholder="Search..."
+            class="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-1 focus:ring-white"
+          />
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex flex-col space-y-2">
+          <a
+            href="#"
+            class="px-3 py-2 rounded-md bg-gray-800 hover:bg-gray-700 text-sm font-medium no-underline"
+            >Dashboard</a
+          >
+          <a
+            href="http://localhost:4200/admin/brands"
+            class="px-3 py-2 rounded-md hover:bg-gray-700 text-sm font-medium text-gray-300 no-underline"
+            >Brands</a
+          >
+          <a
+            href="http://localhost:4200/admin/products"
+            class="px-3 py-2 rounded-md hover:bg-gray-700 text-sm font-medium text-gray-300 no-underline"
+            >Products</a
+          >
+          <a
+            href="#"
+            class="px-3 py-2 rounded-md hover:bg-gray-700 text-sm font-medium text-gray-300 no-underline"
+            >Orders</a
+          >
+          <a
+            href="http://localhost:4200/admin/categories"
+            class="px-3 py-2 rounded-md hover:bg-gray-700 text-sm font-medium text-gray-300 no-underline"
+            >Categories</a
+          >
+          <a
+            href="#"
+            class="px-3 py-2 rounded-md hover:bg-gray-700 text-sm font-medium text-gray-300 no-underline"
+            >Chat</a
+          >
+        </nav>
+
+        <!-- User Profile Section -->
+        <div class="mt-auto border-t border-gray-700 pt-4">
+          <div class="flex flex-col items-center space-y-2">
+            <img
+              class="h-10 w-10 rounded-full"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbDF-GL6nSo2N1HKjTWt5XG7oV81topDSoIA&s"
+              alt="User"
+            />
+            <p class="text-sm font-medium">Sourav</p>
+            <button
+              onclick="alert('Signing out...')"
+              class="text-xs text-gray-400 hover:text-white hover:underline transition"
+            >
+              Sign out
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6 overflow-y-auto bg-gray-100 text-gray-900">
+        <!-- Welcome Banner -->
+        <div
+          class="relative overflow-hidden rounded-lg bg-cover bg-center shadow-lg mb-8"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30');
+            height: 200px;
+          "
+        >
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start p-6"
+          >
+            <h1 class="text-3xl font-bold text-white mb-1">
+              Welcome back, Sourav!
+            </h1>
+            <p class="text-white text-sm">
+              Here's what's happening with your store today.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Card 1 -->
+          <div class="bg-white rounded-lg p-4 shadow-md">
+            <p class="text-gray-500 text-sm">Total Products</p>
+            <h2 class="text-2xl font-bold text-gray-800">128</h2>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white rounded-lg p-4 shadow-md">
+            <p class="text-gray-500 text-sm">Orders Today</p>
+            <h2 class="text-2xl font-bold text-gray-800">43</h2>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white rounded-lg p-4 shadow-md">
+            <p class="text-gray-500 text-sm">Revenue</p>
+            <h2 class="text-2xl font-bold text-gray-800">$3,480</h2>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-white rounded-lg p-4 shadow-md">
+            <p class="text-gray-500 text-sm">Pending Shipments</p>
+            <h2 class="text-2xl font-bold text-gray-800">12</h2>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

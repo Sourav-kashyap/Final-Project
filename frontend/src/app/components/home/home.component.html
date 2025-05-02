@@ -1,1 +1,38 @@
-<p>home works!</p>
+<div class="container mx-auto py-6 px-4">
+  <!-- Heading Section -->
+  <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">
+    Explore Our Categories
+  </h1>
+
+  <!-- Category Grid -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  >
+    <div
+      *ngFor="let category of categoryData"
+      class="bg-white rounded-lg shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-105"
+    >
+      <div class="relative overflow-hidden rounded-t-lg">
+        <img [src]="" [alt]="category.name" class="w-full h-40 object-cover" />
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-2xl font-semibold text-white">{{
+            category.name
+          }}</span>
+        </div>
+      </div>
+
+      <div class="px-4 py-4">
+        <!-- <p class="text-gray-600 text-sm">{{ category.description }}</p> -->
+        <div class="mt-4">
+          <a
+            href="#"
+            class="inline-block text-blue-600 text-sm font-semibold hover:text-blue-500"
+          >
+            Shop Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

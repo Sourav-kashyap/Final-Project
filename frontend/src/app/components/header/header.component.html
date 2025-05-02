@@ -1,0 +1,77 @@
+<nav class="bg-gray-800 text-white">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-2">
+    <!-- Top Row -->
+    <div
+      class="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0"
+    >
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img
+          class="h-16 w-16 rounded-full object-cover"
+          src="https://static.vecteezy.com/system/resources/previews/016/471/452/non_2x/abstract-modern-ecommerce-logo-ecommerce-logo-design-shop-logo-design-template-creative-ecommerce-logo-vector.jpg"
+          alt="Logo"
+        />
+        <span class="text-xl font-semibold">ShopEase</span>
+      </div>
+
+      <!-- Search -->
+      <div class="w-full md:w-1/2 mt-2 md:mt-0">
+        <input
+          type="text"
+          placeholder="Search for products..."
+          class="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-1 focus:ring-white"
+        />
+      </div>
+
+      <!-- Cart and Profile with Dropdown -->
+      <div class="relative flex items-center space-x-3">
+        <!-- Cart Icon -->
+        <button class="relative focus:outline-none">
+          <span
+            class="absolute top-0 right-0 bg-red-600 text-white text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center"
+            >3</span
+          >
+          <svg
+            class="h-9 w-9 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 3h18l-1.25 12.64a2 2 0 01-1.98 1.86H6.23a2 2 0 01-1.98-1.86L3 3z"
+            />
+          </svg>
+        </button>
+
+        <!-- Profile Icon with Dropdown -->
+        <button class="focus:outline-none" (click)="toggleDropdown()">
+          <img
+            class="h-14 w-14 rounded-full"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbDF-GL6nSo2N1HKjTWt5XG7oV81topDSoIA&s"
+            alt="User"
+          />
+        </button>
+
+        <!-- Dropdown -->
+        <div
+          class="absolute right-0 top-7 mt-10 w-40 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50"
+          *ngIf="dropdownOpen"
+        >
+          <p class="px-4 py-2 text-sm font-medium border-b border-gray-200">
+            {{ userName }}
+          </p>
+          <button
+            (click)="signOut()"
+            class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            Sign out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
