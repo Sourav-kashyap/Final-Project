@@ -18,6 +18,8 @@ export class CategoryFormComponent {
   // When add new Category
   categoryId: string = '';
   categoryName: string = '';
+  categoryImgUrl: string = '';
+  categoryDescription: string = '';
 
   // When get category by id
   id!: string;
@@ -40,6 +42,12 @@ export class CategoryFormComponent {
         this.categoryData = data;
         this.categoryId = this.categoryData.id;
         this.categoryName = this.categoryData.name;
+        this.categoryImgUrl = this.categoryData.imageUrl
+          ? this.categoryData.imageUrl
+          : '';
+        this.categoryDescription = this.categoryData.description
+          ? this.categoryData.description
+          : '';
         console.log('Category Data:', this.categoryData);
       },
       error: (err) => {
@@ -52,6 +60,8 @@ export class CategoryFormComponent {
     const categoryData: Category = {
       id: this.categoryId,
       name: this.categoryName,
+      imageUrl: this.categoryImgUrl,
+      description: this.categoryDescription,
     };
 
     // Call the service to add the category
@@ -60,6 +70,8 @@ export class CategoryFormComponent {
         console.log('Category added successfully!', response);
         this.categoryId = '';
         this.categoryName = '';
+        this.categoryImgUrl = '';
+        this.categoryDescription = '';
         this.navigate.navigate(['/admin/categories']);
       },
       error: (error) => {
@@ -72,6 +84,8 @@ export class CategoryFormComponent {
     const updatedCategory: Category = {
       id: this.categoryId,
       name: this.categoryName,
+      imageUrl: this.categoryImgUrl,
+      description: this.categoryDescription,
     };
 
     this.category.updateCategoryById(this.id, updatedCategory).subscribe({

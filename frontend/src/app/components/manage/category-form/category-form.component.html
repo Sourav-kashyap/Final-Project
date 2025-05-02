@@ -53,9 +53,39 @@
         </div>
       </div>
 
+      <!-- New Fields: Image URL and categoryDescription -->
+      <div class="flex flex-col gap-4 mt-4">
+        <!-- Image URL Field -->
+        <div class="w-full">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Image URL</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Enter Image URL"
+              [(ngModel)]="categoryImgUrl"
+              name="categoryImgUrl"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- categoryDescription Field -->
+        <div class="w-full">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>categoryDescription</mat-label>
+            <textarea
+              matInput
+              placeholder="Enter categoryDescription"
+              [(ngModel)]="categoryDescription"
+              name="categoryDescription"
+              rows="4"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
       <!-- Submit Button -->
       <div class="flex justify-center mt-6">
-        <!-- Show "Add" button if not in edit mode -->
         <!-- Show "Add" button if not in edit mode -->
         <button
           *ngIf="!isEditMode; else updateButton"

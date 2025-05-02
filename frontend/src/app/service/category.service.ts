@@ -15,6 +15,7 @@ export class CategoryService {
   }
 
   addCategory(categoryData: Category): Observable<Category> {
+    console.log('category Service ->', categoryData);
     return this.http.post<Category>(
       `${this.categoryBaseUrl}/categories`,
       categoryData

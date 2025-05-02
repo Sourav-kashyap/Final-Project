@@ -16,6 +16,18 @@ export class Category extends Entity {
   })
   name: string;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  imageUrl?: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  description?: string;
+
   constructor(data?: Partial<Category>) {
     super(data);
   }
