@@ -1,0 +1,49 @@
+<div class="container mx-auto py-6 px-4">
+  <!-- Heading Section -->
+  <h1
+    class="text-6xl md:text-7xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-12"
+  >
+    Explore Our Brands
+  </h1>
+
+  <!-- Category Grid (Single row with 3 columns for larger cards) -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  >
+    <div
+      *ngFor="let brand of brandData"
+      class="bg-white rounded-lg shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-105"
+    >
+      <div class="relative overflow-hidden rounded-lg">
+        <img
+          [src]="brand.imageUrl"
+          [alt]="brand.name"
+          class="w-full h-40 object-cover rounded-t-lg"
+        />
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-2xl font-semibold text-white">{{
+            brand.name
+          }}</span>
+        </div>
+      </div>
+
+      <!-- Brand Description (Optional) -->
+      <div class="px-6 py-4">
+        <p class="text-gray-600 text-sm text-center">
+          {{ brand.description || "No description available." }}
+        </p>
+      </div>
+
+      <!-- Optional Footer Section (for more info or call to action) -->
+      <div class="px-6 py-3 text-center">
+        <a
+          [routerLink]="['/user/products', brand.id]"
+          class="text-blue-500 hover:text-blue-700 font-semibold no-underline"
+        >
+          View Products
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

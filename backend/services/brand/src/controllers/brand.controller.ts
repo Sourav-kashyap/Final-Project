@@ -117,6 +117,38 @@ export class BrandController {
     }
   }
 
+  @get('/brandsWithSame/{id}')
+  @response(200, {
+    description: 'Brand model instances with the same ID',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(Brand),
+      },
+    },
+  })
+  async findAllWithSameId(
+    @param.path.string('id') id: string,
+  ): Promise<Brand[]> {
+    try {
+      const brands = await this.brandRepository.find({
+        where: {categoryId: id},
+      });
+
+      if (brands.length === 0) {
+        throw new HttpErrors.NotFound(`Brands with id ${id} not found`);
+      }
+
+      return brands;
+    } catch (error) {
+      if (error instanceof HttpErrors.NotFound) {
+        throw error; // Already handled error
+      }
+      throw new HttpErrors.InternalServerError(
+        `Error finding brands by id: ${error.message}`,
+      );
+    }
+  }
+
   @patch('/brands/{id}')
   @response(204, {
     description: 'Brand PATCH success',

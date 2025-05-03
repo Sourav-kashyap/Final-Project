@@ -25,6 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './components/manage/dashboard/dashboard.component';
+import { UserBrandsComponent } from './components/user-brands/user-brands.component';
+import { UserProductsComponent } from './components/user-products/user-products.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { DashboardComponent } from './components/manage/dashboard/dashboard.comp
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
+    UserBrandsComponent,
+    UserProductsComponent,
   ],
   imports: [
     BrowserModule,

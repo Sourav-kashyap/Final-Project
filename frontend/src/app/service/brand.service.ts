@@ -28,6 +28,10 @@ export class BrandService {
     return this.http.get<Brand>(`${this.brandBaseUrl}/brands/${id}`);
   }
 
+  getBrandWithSameId(id: string): Observable<Brand[]> {
+    return this.http.get<Brand[]>(`${this.brandBaseUrl}/brandsWithSame/${id}`);
+  }
+
   deleteBrandById(id: string): Observable<void> {
     return this.http.delete<void>(`${this.brandBaseUrl}/brands/${id}`);
   }
