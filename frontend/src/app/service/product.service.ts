@@ -34,6 +34,12 @@ export class ProductService {
     return this.http.get<Product>(`${this.productBaseUrl}/products/${id}`);
   }
 
+  getProductWithSameId(id: string): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      `${this.productBaseUrl}/productWithSame/${id}`
+    );
+  }
+
   deleteProductById(id: string): Observable<void> {
     return this.http.delete<void>(`${this.productBaseUrl}/products/${id}`);
   }

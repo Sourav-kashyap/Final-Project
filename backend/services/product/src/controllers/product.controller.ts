@@ -15,6 +15,7 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
 import {Product} from '../models';
 import {ProductRepository} from '../repositories';
@@ -105,6 +106,38 @@ export class ProductController {
     product: Product,
   ): Promise<void> {
     await this.productRepository.updateById(id, product);
+  }
+
+  @get('/productWithSame/{id}')
+  @response(200, {
+    description: 'Product model instances with the same ID',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(Product),
+      },
+    },
+  })
+  async findAllWithSameId(
+    @param.path.string('id') id: string,
+  ): Promise<Product[]> {
+    try {
+      const products = await this.productRepository.find({
+        where: {brandId: id},
+      });
+
+      if (products.length === 0) {
+        throw new HttpErrors.NotFound(`Product with id ${id} not found`);
+      }
+
+      return products;
+    } catch (error) {
+      if (error instanceof HttpErrors.NotFound) {
+        throw error; // Already handled error
+      }
+      throw new HttpErrors.InternalServerError(
+        `Error finding product by id: ${error.message}`,
+      );
+    }
   }
 
   @del('/products/{id}')
