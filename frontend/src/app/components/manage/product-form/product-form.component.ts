@@ -15,6 +15,7 @@ export class ProductFormComponent implements OnInit {
   productForm: FormGroup;
   categoryData: Category[] = [];
   brandData: Brand[] = [];
+  filteredBrands: Brand[] = [];
 
   // When edit product
   isEditMode = false;
@@ -55,6 +56,11 @@ export class ProductFormComponent implements OnInit {
       this.isEditMode = true;
       this.loadProductById();
     }
+
+    // Listen for category changes
+    this.productForm.get('categoryId')?.valueChanges.subscribe((categoryId) => {
+      this.filterBrandsByCategory(categoryId);
+    });
   }
 
   loadProductById(): void {
@@ -104,11 +110,35 @@ export class ProductFormComponent implements OnInit {
     this.brand.getBrands().subscribe({
       next: (brands: Brand[]) => {
         this.brandData = brands;
+        // If editing an existing product, filter brands based on current category
+        if (this.isEditMode) {
+          const currentCategoryId = this.productData.categoryId;
+          this.filterBrandsByCategory(currentCategoryId);
+        }
       },
       error: (err) => {
         console.error('Error loading Brands:', err);
       },
     });
+  }
+
+  // Filter brands based on selected categoryId
+  filterBrandsByCategory(categoryId: string | null) {
+    if (categoryId) {
+      this.filteredBrands = this.brandData.filter(
+        (brand) => brand.categoryId === categoryId
+      );
+      // Reset the brandId if the new category doesn't have the selected brand
+      if (
+        !this.filteredBrands.some(
+          (brand) => brand.id === this.productForm.value.brandId
+        )
+      ) {
+        this.productForm.patchValue({ brandId: null });
+      }
+    } else {
+      this.filteredBrands = [];
+    }
   }
 
   get images(): FormArray {
