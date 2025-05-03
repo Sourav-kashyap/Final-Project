@@ -15,7 +15,23 @@ export class Brand extends Entity {
     required: true,
   })
   name: string;
+  @property({
+    type: 'string',
+    required: true,
+  })
+  imageUrl: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  description: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  categoryId: string;
 
   constructor(data?: Partial<Brand>) {
     super(data);

@@ -15,6 +15,8 @@ export class BrandService {
   }
 
   addBrand(brandData: Brand): Observable<Brand> {
+    console.log('add karo', brandData);
+
     return this.http.post<Brand>(`${this.brandBaseUrl}/brands`, brandData);
   }
 

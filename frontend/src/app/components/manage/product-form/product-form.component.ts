@@ -40,6 +40,7 @@ export class ProductFormComponent implements OnInit {
         null,
         [Validators.required, Validators.min(0), Validators.max(100)],
       ],
+      stock: [null, [Validators.required, Validators.min(0)]],
       images: this.formBuilder.array([this.createImage()]),
       categoryId: [null, [Validators.required]],
       brandId: [null, [Validators.required]],
@@ -67,6 +68,7 @@ export class ProductFormComponent implements OnInit {
           description: data.description || '',
           price: data.price,
           discount: data.discount || 0,
+          stock: data.stock,
           categoryId: data.categoryId,
           brandId: data.brandId,
         });

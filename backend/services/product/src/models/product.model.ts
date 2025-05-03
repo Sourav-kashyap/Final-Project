@@ -53,6 +53,12 @@ export class Product extends Entity {
   })
   brandId: string;
 
+  @property({
+    type: 'number',
+    required: true,
+  })
+  stock: number;
+
   constructor(data?: Partial<Product>) {
     super(data);
   }

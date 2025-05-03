@@ -8,6 +8,9 @@ export interface Category {
 export interface Brand {
   id: string;
   name: string;
+  imageUrl?: string;
+  description?: string;
+  categoryId: string;
 }
 
 export interface Product {
@@ -16,6 +19,7 @@ export interface Product {
   description?: string;
   price: number;
   discount?: number;
+  stock: number;
   images?: string[];
   categoryId: string;
   brandId: string;
