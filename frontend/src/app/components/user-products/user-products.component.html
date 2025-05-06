@@ -40,7 +40,8 @@
         <div class="flex justify-between items-center mt-3">
           <!-- Price with Discount -->
           <div class="text-sm font-semibold text-gray-800">
-            ${{
+            Rs.
+            {{
               product.discount
                 ? (product.price * (1 - product.discount / 100)).toFixed(2)
                 : product.price
@@ -50,7 +51,7 @@
             *ngIf="product.discount"
             class="text-xs text-red-500 line-through"
           >
-            ${{ product.price }}
+            Rs. {{ product.price }}
           </div>
         </div>
 

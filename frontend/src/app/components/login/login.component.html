@@ -1,0 +1,92 @@
+<div class="min-h-screen mt-20">
+  <div
+    class="flex p-6 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-12"
+  >
+    <!-- Left Side -->
+    <div class="flex-1">
+      <a
+        routerLink="/"
+        class="font-extrabold dark:text-white text-4xl no-underline"
+      >
+        <span
+          class="px-3 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white"
+        >
+          Shop
+        </span>
+        Ease
+      </a>
+
+      <p class="text-sm mt-5 text-gray-600">
+        This is a demo project. You can sign in with your email and password.
+      </p>
+    </div>
+
+    <!-- Right Side -->
+    <div class="flex-1">
+      <form
+        (ngSubmit)="onSubmit()"
+        [formGroup]="signInForm"
+        class="flex flex-col gap-6"
+      >
+        <!-- Email Input -->
+        <div>
+          <label for="email" class="block text-sm font-semibold text-gray-700"
+            >Your email</label
+          >
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Enter your Email"
+            class="mt-2 p-3 border border-gray-300 rounded-md w-full"
+            required
+          />
+        </div>
+
+        <!-- Password Input -->
+        <div>
+          <label
+            for="password"
+            class="block text-sm font-semibold text-gray-700"
+            >Your password</label
+          >
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter your Password"
+            class="mt-2 p-3 border border-gray-300 rounded-md w-full"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="isLoading"
+          class="mt-4 p-3 bg-blue-500 text-white font-semibold rounded-md w-full hover:bg-blue-600 disabled:opacity-50"
+        >
+          <ng-container *ngIf="isLoading; else signInText">
+            <span class="spinner"></span>
+            <span class="pl-3">Loading...</span>
+          </ng-container>
+          <ng-template #signInText>Sign In</ng-template>
+        </button>
+      </form>
+
+      <!-- Sign Up Link -->
+      <div class="flex gap-2 text-sm mt-5 text-center">
+        <span>Don't have an account?</span>
+        <a routerLink="/signup" class="text-blue-500 font-semibold">Sign Up</a>
+      </div>
+
+      <!-- Error Message -->
+      <div
+        *ngIf="errorMessage"
+        class="mt-5 bg-red-300 text-black p-3 rounded-lg text-center"
+      >
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</div>

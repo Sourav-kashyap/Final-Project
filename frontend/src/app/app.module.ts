@@ -27,6 +27,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './components/manage/dashboard/dashboard.component';
 import { UserBrandsComponent } from './components/user-brands/user-brands.component';
 import { UserProductsComponent } from './components/user-products/user-products.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { UserProductsComponent } from './components/user-products/user-products.
     DashboardComponent,
     UserBrandsComponent,
     UserProductsComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

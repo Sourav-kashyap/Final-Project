@@ -24,3 +24,7 @@ export interface Product {
   categoryId: string;
   brandId: string;
 }
+
+export interface Token {
+  token: string;
+}

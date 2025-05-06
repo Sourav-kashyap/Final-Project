@@ -9,6 +9,8 @@ import { ProductsComponent } from './components/manage/products/products.compone
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
 import { UserBrandsComponent } from './components/user-brands/user-brands.component';
 import { UserProductsComponent } from './components/user-products/user-products.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,8 @@ const routes: Routes = [
     path: 'user/products/:id',
     component: UserProductsComponent,
   },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
 ];
 
 @NgModule({
