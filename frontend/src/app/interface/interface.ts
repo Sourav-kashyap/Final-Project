@@ -28,3 +28,12 @@ export interface Product {
 export interface Token {
   token: string;
 }
+
+export interface SignupPayload {
+  userId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: string;
+}

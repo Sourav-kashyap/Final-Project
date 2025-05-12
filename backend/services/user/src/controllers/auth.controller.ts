@@ -36,7 +36,9 @@ export class AuthController {
     },
   ): Promise<{token: string}> {
     try {
-      const users = await this.userRepository.find();
+      console.log('login controller:', credentials);
+
+      // const users = await this.userRepository.find();
 
       const user = await this.userRepository.findOne({
         where: {email: credentials.email},
@@ -118,6 +120,8 @@ export class AuthController {
     },
   ): Promise<{token: string}> {
     // Check if email already exists
+    console.log('signup controller:', credentials);
+
     const existing = await this.userRepository.findOne({
       where: {email: credentials.email.toLocaleLowerCase()},
     });

@@ -33,22 +33,22 @@ export class LoginComponent {
     const credentials = this.signInForm.value;
     console.log(credentials);
 
-    // this.auth.login(credentials).subscribe({
-    //   next: (response) => {
-    //     this.isLoading = false;
-    //     localStorage.setItem('authToken', response.token);
-    //     console.log('Login successful');
-    //     this.navigate.navigate(['/']);
-    //   },
-    //   error: (error) => {
-    //     this.isLoading = false;
-    //     this.errorMessage =
-    //       'Login failed. Please check your credentials and try again.';
-    //     console.error('Login failed', error);
-    //   },
-    //   complete: () => {
-    //     console.log('Login request completed.');
-    //   },
-    // });
+    this.auth.login(credentials).subscribe({
+      next: (response) => {
+        this.isLoading = false;
+        console.log('authToken', response.token);
+        console.log('Login successful');
+        this.navigate.navigate(['/']);
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.errorMessage =
+          'Login failed. Please check your credentials and try again.';
+        console.error('Login failed', error);
+      },
+      complete: () => {
+        console.log('Login request completed.');
+      },
+    });
   }
 }
