@@ -25,14 +25,12 @@ export class HeaderComponent {
   cartCount() {
     const userId = 'u1';
 
-    this.cart.getCartByUserId(userId).subscribe({
-      next: (cart: Cart) => {
-        this.totalCartProduct = cart.productsId.length;
-        console.log('Products in cart:', this.totalCartProduct);
-      },
-      error: (err) => {
-        console.error('Error loading cart:', err);
-      },
+    // Refresh count once when header loads
+    this.cart.refreshCartCount(userId);
+
+    // Subscribe to the cart count for real-time updates
+    this.cart.cartCount$.subscribe((count) => {
+      this.totalCartProduct = count;
     });
   }
 

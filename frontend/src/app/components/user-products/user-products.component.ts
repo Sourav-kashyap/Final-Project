@@ -47,6 +47,7 @@ export class UserProductsComponent implements OnInit {
 
         this.cartService.addCart(newCart).subscribe(() => {
           console.log('Cart created and product added');
+          this.cartService.refreshCartCount(userId); // ✅ Refresh after adding
         });
       } else {
         const updatedProducts = [...cart.productsId, productId];
@@ -58,6 +59,7 @@ export class UserProductsComponent implements OnInit {
           })
           .subscribe(() => {
             console.log('Product added to existing cart');
+            this.cartService.refreshCartCount(userId); // ✅ Refresh after updating
           });
       }
     });
