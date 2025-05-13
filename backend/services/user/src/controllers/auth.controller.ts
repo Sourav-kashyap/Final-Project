@@ -6,6 +6,7 @@ import {UserRepository} from '../repositories/user.repository';
 import {sign} from 'jsonwebtoken';
 import {HttpErrors} from '@loopback/rest';
 import {compare, hash} from 'bcrypt';
+import {Login, Signup, Token} from '../interface/interfaces';
 
 export class AuthController {
   constructor(
@@ -30,11 +31,8 @@ export class AuthController {
         },
       },
     })
-    credentials: {
-      email: string;
-      password: string;
-    },
-  ): Promise<{token: string}> {
+    credentials: Login,
+  ): Promise<Token> {
     try {
       console.log('login controller:', credentials);
 
@@ -110,15 +108,8 @@ export class AuthController {
         },
       },
     })
-    credentials: {
-      id: string; // Ensure 'id' is passed in the request body
-      email: string;
-      password: string;
-      firstName: string;
-      lastName: string;
-      role: string;
-    },
-  ): Promise<{token: string}> {
+    credentials: Signup,
+  ): Promise<Token> {
     // Check if email already exists
     console.log('signup controller:', credentials);
 
