@@ -36,7 +36,6 @@ export class CartController {
         'application/json': {
           schema: getModelSchemaRef(Cart, {
             title: 'NewCart',
-            exclude: ['id'],
           }),
         },
       },
@@ -111,5 +110,15 @@ export class CartController {
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.cartRepository.deleteById(id);
+  }
+
+  @get('/carts/user/{userId}')
+  @response(200, {
+    description: 'Find cart by user ID',
+  })
+  async findCartByUserId(
+    @param.path.string('userId') userId: string,
+  ): Promise<Cart | null> {
+    return this.cartRepository.findOne({where: {userId}});
   }
 }

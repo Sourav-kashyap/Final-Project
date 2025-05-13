@@ -11,6 +11,7 @@ import { UserBrandsComponent } from './components/user-brands/user-brands.compon
 import { UserProductsComponent } from './components/user-products/user-products.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  {
+    path: 'addToCart',
+    component: AddToCartComponent,
+  },
 ];
 
 @NgModule({

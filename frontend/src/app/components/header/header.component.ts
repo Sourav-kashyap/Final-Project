@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-// import { Category } from 'src/app/interface/interface';
-// import { CategoryService } from 'src/app/service/category.service';
+import { Cart } from 'src/app/interface/interface';
+import { CartService } from 'src/app/service/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,27 +8,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  // categoryData: Category[] = [];
-
-  // constructor(private readonly category: CategoryService) {}
-
-  // ngOnInit() {
-  //   this.category.getCategories().subscribe({
-  //     next: (categories: Category[]) => {
-  //       console.log('Categories loaded:', categories);
-  //       this.categoryData = categories;
-  //     },
-  //     error: (err) => {
-  //       console.error('Error loading categories:', err);
-  //     },
-  //   });
-  // }
+  constructor(private readonly cart: CartService) {}
+  totalCartProduct: number = 0;
 
   dropdownOpen = false;
   userName = 'Sourav';
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  ngOnInit() {
+    this.cartCount();
+  }
+
+  cartCount() {
+    const userId = 'u1';
+
+    this.cart.getCartByUserId(userId).subscribe({
+      next: (cart: Cart) => {
+        this.totalCartProduct = cart.productsId.length;
+        console.log('Products in cart:', this.totalCartProduct);
+      },
+      error: (err) => {
+        console.error('Error loading cart:', err);
+      },
+    });
   }
 
   signOut() {

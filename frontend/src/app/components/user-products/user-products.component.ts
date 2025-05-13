@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interface/interface';
 import { ProductService } from 'src/app/service/product.service';
+import { CartService } from 'src/app/service/cart.service';
 
 @Component({
   selector: 'app-user-products',
@@ -13,7 +14,8 @@ export class UserProductsComponent implements OnInit {
   id!: string;
   constructor(
     private readonly product: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private readonly cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -31,8 +33,35 @@ export class UserProductsComponent implements OnInit {
     });
   }
 
-  // Add product to the cart
-  addToCart(product: Product): void {}
+  addToCart(product: Product): void {
+    const userId = 'u1';
+    const productId = product.id;
+
+    this.cartService.getCartByUserId(userId).subscribe((cart) => {
+      if (!cart) {
+        const newCart = {
+          id: userId,
+          userId: userId,
+          productsId: [productId],
+        };
+
+        this.cartService.addCart(newCart).subscribe(() => {
+          console.log('Cart created and product added');
+        });
+      } else {
+        const updatedProducts = [...cart.productsId, productId];
+
+        this.cartService
+          .updateCartById(cart.id, {
+            ...cart,
+            productsId: updatedProducts,
+          })
+          .subscribe(() => {
+            console.log('Product added to existing cart');
+          });
+      }
+    });
+  }
 
   // Buy product (navigate to checkout page or initiate purchase)
   buyNow(product: Product): void {}

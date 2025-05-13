@@ -29,6 +29,7 @@ import { UserBrandsComponent } from './components/user-brands/user-brands.compon
 import { UserProductsComponent } from './components/user-products/user-products.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SignupComponent } from './components/signup/signup.component';
     UserProductsComponent,
     LoginComponent,
     SignupComponent,
+    AddToCartComponent,
   ],
   imports: [
     BrowserModule,

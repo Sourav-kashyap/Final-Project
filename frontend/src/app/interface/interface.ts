@@ -37,3 +37,9 @@ export interface SignupPayload {
   password: string;
   role: string;
 }
+
+export interface Cart {
+  id: string;
+  userId: string;
+  productsId: string[];
+}

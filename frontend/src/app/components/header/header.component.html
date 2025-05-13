@@ -4,25 +4,24 @@
     <div
       class="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0"
     >
-      <!-- Logo -->
-      <div class="flex items-center space-x-3">
+      <!-- Logo - routes to /addToCart -->
+      <a
+        routerLink="/addToCart"
+        class="flex items-center font-extrabold dark:text-white text-xl no-underline space-x-2"
+      >
+        <!-- Optional image logo -->
         <!-- <img
-          class="h-16 w-16 rounded-full object-cover"
+          class="h-10 w-10 rounded-full object-cover"
           src="https://static.vecteezy.com/system/resources/previews/016/471/452/non_2x/abstract-modern-ecommerce-logo-ecommerce-logo-design-shop-logo-design-template-creative-ecommerce-logo-vector.jpg"
           alt="Logo"
         /> -->
-        <a
-          routerLink="/"
-          class="font-extrabold dark:text-white text-xl no-underline"
+        <span
+          class="px-3 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white"
         >
-          <span
-            class="px-3 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white"
-          >
-            Shop
-          </span>
-          Ease
-        </a>
-      </div>
+          Shop
+        </span>
+        Ease
+      </a>
 
       <!-- Search -->
       <div class="w-full md:w-1/2 mt-2 md:mt-0">
@@ -33,14 +32,15 @@
         />
       </div>
 
-      <!-- Cart and Profile with Dropdown -->
+      <!-- Cart and Profile -->
       <div class="relative flex items-center space-x-3">
-        <!-- Cart Icon -->
-        <button class="relative focus:outline-none">
+        <!-- Cart Icon - routes to /addToCart -->
+        <button routerLink="/addToCart" class="relative focus:outline-none">
           <span
             class="absolute top-0 right-0 bg-red-600 text-white text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center"
-            >3</span
           >
+            {{ totalCartProduct }}
+          </span>
           <svg
             class="h-9 w-9 text-white"
             xmlns="http://www.w3.org/2000/svg"
