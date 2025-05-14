@@ -34,7 +34,7 @@ export class UserProductsComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    const userId = 'u1';
+    const userId = 'u2';
     const productId = product.id;
 
     this.cartService.getCartByUserId(userId).subscribe((cart) => {
@@ -47,7 +47,7 @@ export class UserProductsComponent implements OnInit {
 
         this.cartService.addCart(newCart).subscribe(() => {
           console.log('Cart created and product added');
-          this.cartService.refreshCartCount(userId); // ✅ Refresh after adding
+          this.cartService.refreshCartCount(userId);
         });
       } else {
         const updatedProducts = [...cart.productsId, productId];
@@ -59,7 +59,7 @@ export class UserProductsComponent implements OnInit {
           })
           .subscribe(() => {
             console.log('Product added to existing cart');
-            this.cartService.refreshCartCount(userId); // ✅ Refresh after updating
+            this.cartService.refreshCartCount(userId);
           });
       }
     });

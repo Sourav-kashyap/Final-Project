@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Cart } from 'src/app/interface/interface';
+// import { Cart } from 'src/app/interface/interface';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -10,7 +10,6 @@ import { CartService } from 'src/app/service/cart.service';
 export class HeaderComponent {
   constructor(private readonly cart: CartService) {}
   totalCartProduct: number = 0;
-
   dropdownOpen = false;
   userName = 'Sourav';
 
@@ -23,11 +22,9 @@ export class HeaderComponent {
   }
 
   cartCount() {
-    const userId = 'u1';
-
+    const userId = 'u2';
     // Refresh count once when header loads
     this.cart.refreshCartCount(userId);
-
     // Subscribe to the cart count for real-time updates
     this.cart.cartCount$.subscribe((count) => {
       this.totalCartProduct = count;

@@ -1,1 +1,74 @@
-<p>add-to-cart works!</p>
+<div class="container mx-auto py-6 px-6">
+  <!-- Heading Section -->
+  <h1
+    class="text-6xl md:text-7xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-12"
+  >
+    Cart Section
+  </h1>
+
+  <!-- Product Grid -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  >
+    <div
+      *ngFor="let product of productData"
+      class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105"
+    >
+      <!-- Product Image -->
+      <div class="relative w-full h-48 overflow-hidden rounded-t-xl">
+        <img
+          [src]="product.images?.[0] || 'assets/images/default-image.jpg'"
+          [alt]="product.name"
+          class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110"
+        />
+      </div>
+
+      <!-- Product Details -->
+      <div class="p-3">
+        <!-- Product Name -->
+        <h2
+          class="text-lg font-semibold text-gray-800 hover:text-blue-500 transition duration-200"
+        >
+          {{ product.name }}
+        </h2>
+
+        <!-- Product Description -->
+        <p class="text-gray-600 text-xs mt-1">
+          {{ product.description || "No description available." }}
+        </p>
+
+        <div class="flex justify-between items-center mt-3">
+          <!-- Price with Discount -->
+          <div class="text-sm font-semibold text-gray-800">
+            Rs.
+            {{
+              product.discount
+                ? (product.price * (1 - product.discount / 100)).toFixed(2)
+                : product.price
+            }}
+          </div>
+          <div
+            *ngIf="product.discount"
+            class="text-xs text-red-500 line-through"
+          >
+            Rs. {{ product.price }}
+          </div>
+        </div>
+
+        <!-- Stock Information -->
+        <p class="text-xs text-gray-700 mt-1">
+          {{ product.stock }} {{ product.stock > 1 ? "Items" : "Item" }} in
+          stock
+        </p>
+
+        <!-- Remove Button -->
+        <button
+          (click)="removeProduct(product.id)"
+          class="mt-3 w-full bg-red-500 text-white py-2 rounded-xl hover:bg-red-600 transition duration-300"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

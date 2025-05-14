@@ -46,6 +46,11 @@ export class CartService {
     return this.http.get<Cart>(`${this.cartBaseUrl}/carts/user/${userId}`);
   }
 
+  deleteSingleProduct(productId: string, cartId: string): Observable<void> {
+    const url = `${this.cartBaseUrl}/carts/${cartId}/product/${productId}`;
+    return this.http.delete<void>(url);
+  }
+
   refreshCartCount(userId: string): void {
     this.getCartByUserId(userId).subscribe({
       next: (cart) => {

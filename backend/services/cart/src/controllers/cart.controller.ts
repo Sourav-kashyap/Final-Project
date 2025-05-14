@@ -15,6 +15,7 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
 import {Cart} from '../models';
 import {CartRepository} from '../repositories';
@@ -120,5 +121,35 @@ export class CartController {
     @param.path.string('userId') userId: string,
   ): Promise<Cart | null> {
     return this.cartRepository.findOne({where: {userId}});
+  }
+
+  @del('/carts/{cartId}/product/{productId}')
+  @response(204, {
+    description: 'Single Product DELETE success from cart',
+  })
+  async deleteSingleProduct(
+    @param.path.string('cartId') cartId: string,
+    @param.path.string('productId') productId: string,
+  ): Promise<void> {
+    // Find the cart by cartId
+    const cart = await this.cartRepository.findById(cartId);
+    if (!cart) {
+      throw new HttpErrors.NotFound('Cart not found');
+    }
+
+    // Find the product within the cart and delete the first occurrence of it
+    const productIndex = cart.productsId.findIndex(
+      product => product === productId,
+    );
+
+    if (productIndex === -1) {
+      throw new HttpErrors.NotFound('Product not found in cart');
+    }
+
+    // Remove the product from the cart
+    cart.productsId.splice(productIndex, 1);
+
+    // Save the updated cart back to the repository
+    await this.cartRepository.updateById(cartId, cart);
   }
 }
