@@ -113,11 +113,11 @@ export class AddToCartComponent implements OnInit {
         next: () => {
           console.log('Cart product is deleted');
           this.getAllCarts();
+          this.cartService.refreshCartCount(this.userId);
         },
         error: (err) => {
           console.error('Error deleting cart product:', err);
         },
       });
-    this.cartService.refreshCartCount(this.userId);
   }
 }
