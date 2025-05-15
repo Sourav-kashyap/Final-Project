@@ -14,6 +14,7 @@ export class AddToCartComponent implements OnInit {
   cartProductsId: string[] = [];
   productData: Product[] = [];
   loggedInUserId: string = '';
+  totalPrice: number = 0;
 
   constructor(
     private readonly cartService: CartService,
@@ -66,10 +67,17 @@ export class AddToCartComponent implements OnInit {
           productCountMap
         );
 
-        console.log('Matched and Expanded Products:', expandedProducts);
+        this.productData = expandedProducts; // 🛠️ update with expanded list
+        this.totalPrice = 0; // ✅ Reset total before summing
 
-        // Update the product data to include repeated products
-        this.productData = expandedProducts;
+        // ✅ Recalculate totalPrice
+        this.productData.forEach((product: Product) => {
+          const discount = product.discount ?? 0;
+          const discountAmount = product.price * (discount / 100);
+          this.totalPrice += product.price - discountAmount;
+        });
+
+        console.log('Matched and Expanded Products:', expandedProducts);
       },
       error: (err) => {
         console.error('Error loading Products:', err);
@@ -120,4 +128,5 @@ export class AddToCartComponent implements OnInit {
         },
       });
   }
+  buyNow() {}
 }

@@ -71,4 +71,18 @@
       </div>
     </div>
   </div>
+  <div class="flex items-center justify-between w-full mt-2">
+    <!-- Total Price -->
+    <div class="text-lg font-semibold text-gray-800">
+      Total Rs: {{ totalPrice.toFixed(2) }}
+    </div>
+
+    <!-- Buy Now Button -->
+    <button
+      (click)="buyNow()"
+      class="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 transform hover:scale-105"
+    >
+      Buy Now
+    </button>
+  </div>
 </div>
