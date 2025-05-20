@@ -30,6 +30,7 @@ import { UserProductsComponent } from './components/user-products/user-products.
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
+import { CaraouselComponent } from './components/caraousel/caraousel.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
     LoginComponent,
     SignupComponent,
     AddToCartComponent,
+    CaraouselComponent,
   ],
   imports: [
     BrowserModule,
