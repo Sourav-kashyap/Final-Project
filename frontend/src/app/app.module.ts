@@ -31,6 +31,9 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import { CaraouselComponent } from './components/caraousel/caraousel.component';
+import { OrderComponent } from './components/order/order.component';
+import { HistoryComponent } from './components/history/history.component';
+import { UsersComponent } from './components/manage/users/users.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { CaraouselComponent } from './components/caraousel/caraousel.component';
     SignupComponent,
     AddToCartComponent,
     CaraouselComponent,
+    OrderComponent,
+    HistoryComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

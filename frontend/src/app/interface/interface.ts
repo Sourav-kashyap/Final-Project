@@ -43,3 +43,12 @@ export interface Cart {
   userId: string;
   productsId: string[];
 }
+
+export interface User {
+  id: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+}

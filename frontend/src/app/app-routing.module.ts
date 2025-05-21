@@ -12,6 +12,10 @@ import { UserProductsComponent } from './components/user-products/user-products.
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
+import { OrderComponent } from './components/order/order.component';
+import { HistoryComponent } from './components/history/history.component';
+import { DashboardComponent } from './components/manage/dashboard/dashboard.component';
+import { UsersComponent } from './components/manage/users/users.component';
 
 const routes: Routes = [
   {
@@ -40,6 +44,22 @@ const routes: Routes = [
   {
     path: 'addToCart',
     component: AddToCartComponent,
+  },
+  {
+    path: 'order',
+    component: OrderComponent,
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
+  },
+  {
+    path: 'admin/dashboard',
+    component: DashboardComponent,
+  },
+  {
+    path: 'admin/users',
+    component: UsersComponent,
   },
 ];
 

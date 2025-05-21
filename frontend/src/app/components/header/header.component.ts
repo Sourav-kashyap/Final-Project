@@ -12,6 +12,7 @@ export class HeaderComponent {
   totalCartProduct: number = 0;
   dropdownOpen = false;
   userName = 'Sourav';
+  isAdmin = true;
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;

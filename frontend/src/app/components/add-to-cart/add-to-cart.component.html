@@ -1,10 +1,10 @@
 <div class="container mx-auto py-6 px-6">
   <!-- Heading Section -->
-  <h1
-    class="text-6xl md:text-7xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-12"
+  <div
+    class="bg-gradient-to-r from-gray-800 to-blue-200 text-white text-center py-4 rounded-lg shadow-lg mt-4 mb-4"
   >
-    Cart Section
-  </h1>
+    <h1 class="text-4xl font-bold mb-1">Cart Section</h1>
+  </div>
 
   <!-- Product Grid -->
   <div
@@ -55,12 +55,6 @@
           </div>
         </div>
 
-        <!-- Stock Information -->
-        <p class="text-xs text-gray-700 mt-1">
-          {{ product.stock }} {{ product.stock > 1 ? "Items" : "Item" }} in
-          stock
-        </p>
-
         <!-- Remove Button -->
         <button
           (click)="removeProduct(product.id)"
@@ -79,6 +73,7 @@
 
     <!-- Buy Now Button -->
     <button
+      routerLink="/order"
       (click)="buyNow()"
       class="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 transform hover:scale-105"
     >

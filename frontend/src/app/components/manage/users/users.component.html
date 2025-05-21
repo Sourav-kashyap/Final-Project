@@ -1,0 +1,130 @@
+<div class="px-20 mt-20">
+  <div class="shadow">
+    <!-- Table -->
+    <table
+      mat-table
+      [dataSource]="userDataSource"
+      matSort
+      class="w-full table-fixed"
+    >
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          ID
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.id }}
+        </td>
+      </ng-container>
+
+      <!-- First Name Column -->
+      <ng-container matColumnDef="firstName">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          First Name
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.firstName }}
+        </td>
+      </ng-container>
+
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="lastName">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Last Name
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.lastName }}
+        </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Email
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.email }}
+        </td>
+      </ng-container>
+
+      <!-- Role Column -->
+      <ng-container matColumnDef="role">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Role
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          {{ row.role }}
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="w-1/3 text-center"
+        >
+          Action
+        </th>
+        <td mat-cell *matCellDef="let row" class="w-1/3">
+          <button
+            type="button"
+            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-1.5 text-center me-2 mb-2"
+            [routerLink]="['/admin/users', row.id]"
+          >
+            Edit
+          </button>
+
+          <button
+            type="button"
+            class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-2 mb-2"
+            (click)="deleteUser(row.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Header & Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- No Data Row -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell text-center" colspan="3">No data to display</td>
+      </tr>
+    </table>
+
+    <!-- Paginator -->
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20, 100]"
+      aria-label="Select page size"
+    ></mat-paginator>
+  </div>
+</div>

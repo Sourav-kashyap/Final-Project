@@ -75,6 +75,22 @@
             {{ userName }}
           </p>
           <button
+            routerLink="/history"
+            class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            History
+          </button>
+
+          <!-- Conditionally show 'Dashboard' button if user is admin -->
+          <button
+            *ngIf="isAdmin"
+            routerLink="/admin/dashboard"
+            class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            Dashboard
+          </button>
+
+          <button
             (click)="signOut()"
             class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           >
