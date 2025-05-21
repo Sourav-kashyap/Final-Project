@@ -42,7 +42,24 @@ export class UsersComponent implements OnInit {
 
   // Function to handle user deletion
   deleteUser(userId: string): void {
-    console.log('Deleting user with id:', userId);
-    // Logic to delete the user
+    console.log('id->', userId);
+
+    this.userService.deleteUser(userId).subscribe({
+      next: () => {
+        console.log('User deleted successfully');
+        this.removeUserFromTable(userId);
+      },
+      error: (err) => {
+        console.error('Error deleting user:', err);
+        alert('Failed to delete the user');
+      },
+    });
+  }
+
+  removeUserFromTable(userId: string): void {
+    const updatedData = this.userDataSource.data.filter(
+      (user) => user.id !== userId
+    );
+    this.userDataSource.data = updatedData;
   }
 }

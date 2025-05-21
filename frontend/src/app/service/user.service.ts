@@ -12,4 +12,8 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.userBaseUrl}/users`);
   }
+
+  deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.userBaseUrl}/user/${id}`);
+  }
 }
