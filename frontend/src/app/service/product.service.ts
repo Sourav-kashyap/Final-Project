@@ -14,6 +14,12 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.productBaseUrl}/products`);
   }
 
+  getProductCount(): Observable<{ count: number }> {
+    return this.http.get<{ count: number }>(
+      `${this.productBaseUrl}/products/count`
+    );
+  }
+
   addProduct(productData: Product): Observable<any> {
     return this.http.post<any>(`${this.productBaseUrl}/products`, productData);
   }
